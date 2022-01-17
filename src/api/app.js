@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const userController = require('../controllers/userController');
 
 const app = express();
 
@@ -10,8 +11,6 @@ app.get('/', (request, response) => {
 });
 // Não remover esse end-point, ele é necessário para o avaliador
 
-app.post('/users', (req, res) => {
-  res.status(201).json({ user: { role: 'user' } });
-});
+app.post('/users', userController.createUser);
 
 module.exports = app;

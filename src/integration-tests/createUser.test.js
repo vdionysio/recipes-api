@@ -12,10 +12,11 @@ const { expect } = chai;
 
 describe('POST /users', () => {
   describe('quando o usuário é criado com sucesso', () => {
+    let connectionMock;
     let response = {};
 
     before(async () => {
-      const connectionMock = await getConnection;
+      connectionMock = await getConnection();
       sinon.stub(MongoClient, 'connect')
         .resolves(connectionMock);
 
@@ -201,7 +202,7 @@ describe('POST /users', () => {
     });
 
     it('retorna o código de status 409', () => {
-      expect(response).to.have.status(400);
+      expect(response).to.have.status(409);
     });
 
     it('retorna um objeto com a mensagem "Email already registered"', () => {
