@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 
 // const STD_MSG = 'Invalid entries. Try again.';
 
