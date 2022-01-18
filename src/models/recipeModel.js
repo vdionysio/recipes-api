@@ -66,10 +66,30 @@ const deleteById = async (id) => {
   return true;
 };
 
+const addImageById = async (imageUrl, id) => {
+  const recipeCollection = await mongoConnection.getConnection()
+    .then((db) => db.collection('recipes'));
+
+  const result = await recipeCollection.updateOne(
+    { _id: ObjectId(id) },
+    { $set: { image: imageUrl } },
+    { returnOriginal: false },
+  );
+
+  if (result.matchedCount === 0) {
+    return null;
+  }
+
+  const recipe = await getById(id);
+
+  return recipe;
+};
+
 module.exports = {
   addRecipe,
   getAll,
   getById,
   updateById,
   deleteById,
+  addImageById,
 };

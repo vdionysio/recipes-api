@@ -1,3 +1,4 @@
+const { join } = require('path');
 const service = require('../services/recipeService');
 const model = require('../models/recipeModel');
 
@@ -66,10 +67,28 @@ const deleteById = async (req, res) => {
   res.status(204).send();
 };
 
+const addImageById = async (req, res) => {
+  const { user } = req;
+  const { id } = req.params;
+  const { filename } = req.file;
+  const imagePath = join('localhost:3000', 'src', 'uploads', filename);
+
+  const result = await service
+    .addImageById(imagePath, id, user);
+
+  if (result.statusCode) {
+    return res
+      .status(result.statusCode).json({ message: result.message });
+  }
+
+  res.status(200).json(result);
+};
+
 module.exports = {
   addRecipe,
   getAll,
   getById,
   updateById,
   deleteById,
+  addImageById,
 };

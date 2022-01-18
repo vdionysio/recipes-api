@@ -76,9 +76,32 @@ const deleteById = async (recipeId, userFromToken) => {
   return isDeleted;
 };
 
+const addImageById = async (path, id, userFromToken) => {
+  if (!ObjectId.isValid(id)) {
+    return recipeNotFound;
+  }
+
+  const recipe = await model.getById(id);
+
+  if (!recipe) {
+    return recipeNotFound;
+  }
+
+  const { _id: authUserId } = await userModel.getByEmail(userFromToken.email);
+
+  if (authUserId.toString() !== recipe.userId.toString() && userFromToken.role !== 'admin') {
+    return accessDenied;
+  }
+ 
+  const updatedRecipe = await model.addImageById(path, id);
+
+  return updatedRecipe;
+};
+
 module.exports = {
   addRecipe,
   getById,
   updateById,
   deleteById,
+  addImageById,
 };
