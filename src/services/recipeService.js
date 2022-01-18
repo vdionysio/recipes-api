@@ -54,8 +54,31 @@ const updateById = async ({ name, ingredients, preparation }, recipeId, userFrom
   return { ...updatedRecipe, userId: authUserId };
 };
 
+const deleteById = async (recipeId, userFromToken) => {
+  if (!ObjectId.isValid(recipeId)) {
+    return recipeNotFound;
+  }
+
+  const recipe = await model.getById(recipeId);
+
+  if (!recipe) {
+    return recipeNotFound;
+  }
+
+  const { _id: authUserId } = await userModel.getByEmail(userFromToken.email);
+
+  if (authUserId.toString() !== recipe.userId.toString() && userFromToken.role !== 'admin') {
+    return accessDenied;
+  }
+
+  const isDeleted = await model.deleteById(recipeId);
+
+  return isDeleted;
+};
+
 module.exports = {
   addRecipe,
   getById,
   updateById,
+  deleteById,
 };

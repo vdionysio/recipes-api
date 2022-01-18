@@ -51,9 +51,25 @@ const updateById = async (req, res) => {
   res.status(200).json(result);
 };
 
+const deleteById = async (req, res) => {
+  const { user } = req;
+  const { id } = req.params;
+
+  const result = await service
+    .deleteById(id, user);
+
+  if (result.statusCode) {
+    return res
+      .status(result.statusCode).json({ message: result.message });
+  }
+
+  res.status(204).send();
+};
+
 module.exports = {
   addRecipe,
   getAll,
   getById,
   updateById,
+  deleteById,
 };

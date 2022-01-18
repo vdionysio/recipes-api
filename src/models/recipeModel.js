@@ -51,9 +51,25 @@ const updateById = async ({ name, ingredients, preparation }, id) => {
   return { _id: id, name, ingredients, preparation };
 };
 
+const deleteById = async (id) => {
+  const recipeCollection = await mongoConnection.getConnection()
+    .then((db) => db.collection('recipes'));
+
+  const result = await recipeCollection.removeOne(
+    { _id: ObjectId(id) },
+  );
+
+  if (result.matchedCount === 0) {
+    return null;
+  }
+
+  return true;
+};
+
 module.exports = {
   addRecipe,
   getAll,
   getById,
   updateById,
+  deleteById,
 };
