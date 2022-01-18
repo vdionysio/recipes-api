@@ -35,8 +35,25 @@ const getById = async (id) => {
   return recipe;
 };
 
+const updateById = async ({ name, ingredients, preparation }, id) => {
+  const recipeCollection = await mongoConnection.getConnection()
+    .then((db) => db.collection('recipes'));
+
+  const result = await recipeCollection.updateOne(
+    { _id: ObjectId(id) },
+    { $set: { name, ingredients, preparation } },
+  );
+
+  if (result.matchedCount === 0) {
+    return null;
+  }
+
+  return { _id: id, name, ingredients, preparation };
+};
+
 module.exports = {
   addRecipe,
   getAll,
   getById,
+  updateById,
 };

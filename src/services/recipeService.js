@@ -4,6 +4,7 @@ const userModel = require('../models/userModel');
 const recipeSchema = require('../schemas/recipeSchema');
 
 const recipeNotFound = { message: 'recipe not found', statusCode: 404 };
+const accessDenied = { message: 'you dont have access', statusCode: 401 };
 
 const addRecipe = async ({ name, ingredients, preparation }, email) => {
   const { error } = recipeSchema.validate({ name, ingredients, preparation });
@@ -31,7 +32,30 @@ const getById = async (id) => {
   return recipe;
 };
 
+const updateById = async ({ name, ingredients, preparation }, recipeId, userFromToken) => {
+  if (!ObjectId.isValid(recipeId)) {
+    return recipeNotFound;
+  }
+
+  const recipe = await model.getById(recipeId);
+
+  if (!recipe) {
+    return recipeNotFound;
+  }
+
+  const { _id: authUserId } = await userModel.getByEmail(userFromToken.email);
+
+  if (authUserId.toString() !== recipe.userId.toString() && userFromToken.role !== 'admin') {
+    return accessDenied;
+  }
+
+  const updatedRecipe = await model.updateById({ name, ingredients, preparation }, recipeId);
+
+  return { ...updatedRecipe, userId: authUserId };
+};
+
 module.exports = {
   addRecipe,
   getById,
+  updateById,
 };

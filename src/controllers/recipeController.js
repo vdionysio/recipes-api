@@ -35,8 +35,25 @@ const getById = async (req, res) => {
   res.status(200).json(recipe);
 };
 
+const updateById = async (req, res) => {
+  const { user } = req;
+  const { id } = req.params;
+  const { name, ingredients, preparation } = req.body;
+
+  const result = await service
+    .updateById({ name, ingredients, preparation }, id, user);
+
+  if (result.statusCode) {
+    return res
+      .status(result.statusCode).json({ message: result.message });
+  }
+
+  res.status(200).json(result);
+};
+
 module.exports = {
   addRecipe,
   getAll,
   getById,
+  updateById,
 };

@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
   const JWT_SECRET = 'SecretWord1234';
 
   if (!token) {
-    const err = new Error('jwt malformed');
+    const err = new Error('missing auth token');
     err.statusCode = 401;
 
     return next(err);
