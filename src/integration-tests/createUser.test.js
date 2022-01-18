@@ -40,7 +40,7 @@ describe('POST /users', () => {
     });
 
     it('retorna um objeto', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
     });
 
     it('o objeto possui um objeto interno user', () => {
@@ -78,7 +78,7 @@ describe('POST /users', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -108,7 +108,7 @@ describe('POST /users', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -139,7 +139,7 @@ describe('POST /users', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -169,7 +169,7 @@ describe('POST /users', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -208,7 +208,7 @@ describe('POST /users', () => {
     });
 
     it('retorna um objeto com a mensagem "Email already registered"', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Email already registered');
     });
   });

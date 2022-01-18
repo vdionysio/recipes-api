@@ -58,7 +58,7 @@ describe('POST /recipes', () => {
     });
 
     it('retorna um objeto', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
     });
 
     it('o objeto possui um objeto interno de nome recipe', () => {
@@ -123,7 +123,7 @@ describe('POST /recipes', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -175,7 +175,7 @@ describe('POST /recipes', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -227,7 +227,7 @@ describe('POST /recipes', () => {
     });
 
     it('retorna um objeto com a mensagem "Invalid entries. Try again."', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Invalid entries. Try again.');
     });
   });
@@ -274,7 +274,7 @@ describe('POST /recipes', () => {
     });
 
     it('retorna um objeto com a mensagem "jwt malformed"', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('jwt malformed');
     });
   });

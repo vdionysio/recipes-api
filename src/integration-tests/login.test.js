@@ -46,7 +46,7 @@ describe('POST /login', () => {
     });
 
     it('retorna um objeto', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
     });
 
     it('o objeto possui uma propriedade token com o email usado no login', () => {
@@ -82,7 +82,7 @@ describe('POST /login', () => {
     });
 
     it('retorna um objeto com a mensagem "All fields must be filled"', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('All fields must be filled');
     });
   });
@@ -112,7 +112,7 @@ describe('POST /login', () => {
     });
 
     it('retorna um objeto com a mensagem "All fields must be filled"', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('All fields must be filled');
     });
   });
@@ -143,7 +143,7 @@ describe('POST /login', () => {
     });
 
     it('retorna um objeto com a mensagem "Incorrect username or password"', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Incorrect username or password');
     });
   });
@@ -182,7 +182,7 @@ describe('POST /login', () => {
     });
 
     it('retorna um objeto com a mensagem "Incorrect username or password"', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
       expect(response.body.message).to.be.equal('Incorrect username or password');
     });
   });
