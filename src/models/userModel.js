@@ -1,10 +1,9 @@
 const mongoConnection = require('./connection');
 
-const createUser = async ({ name, email, password }) => {
+const createUser = async ({ name, email, password }, role = 'user') => {
   const userCollection = await mongoConnection.getConnection()
     .then((db) => db.collection('users'));
 
-  const role = 'user';
   const { insertedId: _id } = await userCollection
     .insertOne({ name, email, password, role });
 
