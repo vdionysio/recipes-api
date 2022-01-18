@@ -5,6 +5,7 @@ const sinon = require('sinon');
 
 const { getConnection } = require('./mockConnection');
 const server = require('../api/app');
+const jwt = require('jsonwebtoken');
 
 chai.use(chaiHttp);
 
@@ -48,8 +49,11 @@ describe('POST /login', () => {
       expect(response.body).to.be.a('object');
     });
 
-    it('o objeto possui uma propriedade token', () => {
+    it('o objeto possui uma propriedade token com o email usado no login', () => {
       expect(response.body).to.have.property('token');
+      const { token } = response.body;
+      const payload = jwt.decode(token);
+      expect(payload.email).to.be.equal('test@email.com');
     });
   });
 

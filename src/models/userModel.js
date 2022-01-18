@@ -25,7 +25,16 @@ const getByEmail = async (email) => {
   return user;
 };
 
+const cleanCollection = async () => {
+  const userCollection = await mongoConnection.getConnection()
+    .then((db) => db.collection('users'));
+
+  await userCollection
+    .deleteMany({});
+};
+
 module.exports = {
   createUser,
   getByEmail,
+  cleanCollection,
 };

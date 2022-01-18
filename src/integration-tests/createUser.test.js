@@ -3,6 +3,7 @@ const chaiHttp = require('chai-http');
 const { MongoClient } = require('mongodb');
 const sinon = require('sinon');
 
+const userModel = require('../models/userModel');
 const { getConnection } = require('./mockConnection');
 const server = require('../api/app');
 
@@ -20,6 +21,7 @@ describe('POST /users', () => {
       sinon.stub(MongoClient, 'connect')
         .resolves(connectionMock);
 
+      await userModel.cleanCollection();
       response = await chai.request(server)
         .post('/users')
         .send({
