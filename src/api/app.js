@@ -18,6 +18,7 @@ app.post('/users', userController.createUser);
 app.post('/login', userController.login);
 app.post('/recipes', auth, recipeController.addRecipe);
 app.get('/recipes', recipeController.getAll);
+app.get('/recipes/:id', recipeController.getById);
 
 app.use(handleError);
 module.exports = app;

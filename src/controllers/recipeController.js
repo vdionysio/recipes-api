@@ -22,7 +22,21 @@ const getAll = async (req, res) => {
   res.status(200).json(recipes);
 };
 
+const getById = async (req, res) => {
+  const { id } = req.params;
+
+  const recipe = await service.getById(id);
+
+  if (recipe.statusCode) {
+    return res
+      .status(recipe.statusCode).json({ message: recipe.message });
+  }
+
+  res.status(200).json(recipe);
+};
+
 module.exports = {
   addRecipe,
   getAll,
+  getById,
 };
