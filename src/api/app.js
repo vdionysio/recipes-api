@@ -42,4 +42,5 @@ app.delete('/recipes/:id', validateJWT, recipeController.deleteById);
 app.put('/recipes/:id/image', validateJWT, upload.single('image'), recipeController.addImageById);
 app.post('/users/admin', validateJWT, userController.createAdmin);
 app.use(handleError);
+
 module.exports = app;
