@@ -76,7 +76,7 @@ Ex:
 O id de uma receita específica a ser deletada deve ser passado como parâmetro da rota de requisição. Além de um token passado no header authorization. Esse token é gerado no login ou na criação de usuário.
 
 ### 8. Adicionar uma imagem a receita - PUT /recipes/:id/image
-Onde uma imagem deve ser passada para a requisição. Além de um token passado no header authorization. Esse token é gerado no login ou na criação de usuário.
+Onde uma imagem deve ser passada para a requisição num campo image. Além de um token passado no header authorization. Esse token é gerado no login ou na criação de usuário.
 
 ### 9. Adicionar um admin - POST /users/admin
 Onde um json contendo nome, email e password deve ser passado como body. Além de um token passado no header authorization. Esse token é gerado no login ou na criação de usuário e deve conter o role de admin.
