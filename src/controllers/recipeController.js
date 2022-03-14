@@ -1,12 +1,12 @@
 const { join } = require('path');
+const rescue = require('express-rescue');
 const service = require('../services/recipeService');
 const model = require('../models/recipeModel');
 
-const addRecipe = async (req, res) => {
+const addRecipe = rescue(async (req, res) => {
   const { name, ingredients, preparation } = req.body;
   const { email } = req.user;
 
-  // aqui a zica
   const recipe = await service.addRecipe({ name, ingredients, preparation }, email);
 
   if (recipe.statusCode) {
@@ -15,15 +15,15 @@ const addRecipe = async (req, res) => {
   }
 
   res.status(201).json({ recipe });
-};
+});
 
-const getAll = async (req, res) => {
+const getAll = rescue(async (req, res) => {
   const recipes = await model.getAll();
 
   res.status(200).json(recipes);
-};
+});
 
-const getById = async (req, res) => {
+const getById = rescue(async (req, res) => {
   const { id } = req.params;
 
   const recipe = await service.getById(id);
@@ -34,9 +34,9 @@ const getById = async (req, res) => {
   }
 
   res.status(200).json(recipe);
-};
+});
 
-const updateById = async (req, res) => {
+const updateById = rescue(async (req, res) => {
   const { user } = req;
   const { id } = req.params;
   const { name, ingredients, preparation } = req.body;
@@ -50,9 +50,9 @@ const updateById = async (req, res) => {
   }
 
   res.status(200).json(result);
-};
+});
 
-const deleteById = async (req, res) => {
+const deleteById = rescue(async (req, res) => {
   const { user } = req;
   const { id } = req.params;
 
@@ -65,9 +65,9 @@ const deleteById = async (req, res) => {
   }
 
   res.status(204).send();
-};
+});
 
-const addImageById = async (req, res) => {
+const addImageById = rescue(async (req, res) => {
   const { user } = req;
   const { id } = req.params;
   const { filename } = req.file;
@@ -82,7 +82,7 @@ const addImageById = async (req, res) => {
   }
 
   res.status(200).json(result);
-};
+});
 
 module.exports = {
   addRecipe,

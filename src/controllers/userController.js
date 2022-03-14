@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
+const rescue = require('express-rescue');
 const service = require('../services/userService');
 
 const JWT_SECRET = 'SecretWord1234';
 
-const createUser = async (req, res) => {
+const createUser = rescue(async (req, res) => {
   const { name, email, password } = req.body;
 
   const user = await service.createUser({ name, email, password });
@@ -14,9 +15,9 @@ const createUser = async (req, res) => {
   }
 
   res.status(201).json({ user });
-};
+});
 
-const login = async (req, res) => {
+const login = rescue(async (req, res) => {
   const { email, password } = req.body;
 
   const result = await service.login({ email, password });
@@ -36,9 +37,9 @@ const login = async (req, res) => {
   });
 
   res.status(200).json({ token });
-};
+});
 
-const createAdmin = async (req, res) => {
+const createAdmin = rescue(async (req, res) => {
   const { user } = req;
   const { name, email, password } = req.body;
 
@@ -50,7 +51,7 @@ const createAdmin = async (req, res) => {
   }
 
   res.status(201).json({ user: newAdmin });
-};
+});
 
 module.exports = {
   createUser,
