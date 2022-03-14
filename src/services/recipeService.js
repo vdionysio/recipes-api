@@ -8,7 +8,7 @@ const accessDenied = { message: 'you dont have access', statusCode: 401 };
 
 const addRecipe = async ({ name, ingredients, preparation }, email) => {
   const { error } = recipeSchema.validate({ name, ingredients, preparation });
-  if (error) return { message: 'Invalid entries. Try again.', statusCode: 400 };
+  if (error) return { message: error.message, statusCode: 400 };
 
   const user = await userModel.getByEmail(email);
 
@@ -45,6 +45,7 @@ const updateById = async ({ name, ingredients, preparation }, recipeId, userFrom
 
   const { _id: authUserId } = await userModel.getByEmail(userFromToken.email);
 
+  console.log(authUserId, recipe);
   if (authUserId.toString() !== recipe.userId.toString() && userFromToken.role !== 'admin') {
     return accessDenied;
   }
