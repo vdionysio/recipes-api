@@ -1,5 +1,5 @@
 # Recipes API
-A aplicação consiste numa API para gestão de receitas.
+A aplicação consiste numa API para gerenciamento de receitas por usuários.
 As principais tecnologias utlizadas no desenvolvimento foram:
 - NodeJS;
 - ExpressJS;
