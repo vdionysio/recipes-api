@@ -5,7 +5,7 @@ const loginSchema = require('../schemas/loginSchema');
 const createUser = async ({ name, email, password }) => {
   const { error } = userSchema.validate({ name, email, password });
 
-  if (error) return { message: 'Invalid entries. Try again.', statusCode: 400 };
+  if (error) return { message: error.message, statusCode: 400 };
 
   const user = await model.getByEmail(email);
 

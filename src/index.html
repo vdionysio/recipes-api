@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: #dee2e6;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    h4 span {
+      display: inline-block;
+      text-align: center;
+      width: 70px;
+      padding-top: 3px;
+      /* border: 1px solid black; */
+      border-radius: 2px;
+      color: whitesmoke;
+    }
+
+    code {
+      display: block;
+    }
+
+    .post {
+      background-color: #02c39a;
+    }
+
+    .get {
+      background-color: #0077b6;
+    }
+
+    .delete {
+      background-color: #ef233c;
+    }
+
+    .put {
+      background-color: #f48c06;
+    }
+    
+    </style>
+</head>
+<body>
+  <h1>Recipes API</h1>
+  <h2>Rotas</h2>
+  <ul>
+    <li>
+      <div>
+        <h4><span class="post">POST</span> /users</h4>
+        <p>Criar um usuário. Body é necessário.</p>
+        <span>Ex:</span>
+        <code>
+          { <br>
+            &nbsp;&nbsp;"name": "Vinícius",<br>
+            &nbsp;&nbsp;"email": "vini.dionysio@gmail.com",<br>
+            &nbsp;&nbsp;"password": "senhasegura"<br>
+          }
+        </code>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="post">POST</span> /login</h4>
+        <p>Logar com um usuário. Body é necessário.</p>
+        <span>Ex:</span>
+        <code>
+          {<br>
+            &nbsp;&nbsp;"email": "vini.dionysio@gmail.com",<br>
+            &nbsp;&nbsp;"password": "senhasegura"<br>
+          }
+        </code>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="post">POST</span> /recipes</h4>
+        <p>Adicionar uma receita ao banco. Body e um token no header authorization são necessários.</p>
+        <span>Ex:</span>
+        <code>
+          {<br>
+            &nbsp;&nbsp;"name": "Receitinha boa",<br>
+            &nbsp;&nbsp;"ingredients": "Abobrinha, Berinjela, ...",<br>
+            &nbsp;&nbsp;"preparation": "cozinar por tantos minutos..."<br>
+          }
+        </code>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="get">GET</span> /recipes</h4>
+        <p>Retorna todas receitas armazenadas no banco.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="get">GET</span> /recipes/:id</h4>
+        <p>Retorna uma receita com o id específico passado na requisição.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="put">PUT</span> /recipes/:id</h4>
+        <p>Atualizar uma receita do banco. Body e um token no header authorization são necessários.</p>
+        <span>Ex:</span>
+        <code>
+          {<br>
+            &nbsp;&nbsp;"name": "Receitinha boa 2.0",<br>
+            &nbsp;&nbsp;"ingredients": "Abobrinha, Berinjela,tomate",<br>
+            &nbsp;&nbsp;"preparation": "cozinar por muitos minutos..."<br>
+          }
+        </code>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="delete">DELETE</span> /recipes/:id</h4>
+        <p>Atualizar uma receita do banco. Um token no header authorization é necessário.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="put">PUT</span> /recipes/:id/image</h4>
+        <p>Adicionar uma imagem a receita. Deve ser passada uma imagem num campo image e um token no header authorization.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4><span class="post">POST</span> /users/admin</h4>
+        <p>Adicionar um admin. Um body é necessário, além de um token com role de admin.</p>
+        <span>Ex:</span>
+        <code>
+          {<br>
+            &nbsp;&nbsp;"name": "Vinícius",<br>
+            &nbsp;&nbsp;"email": "vini.dionysio@gmail.com",<br>
+            &nbsp;&nbsp;"password": "senhasegura"<br>
+          }
+        </code>
+      </div>
+    </li>
+  </ul>
+</body>
+</html>
