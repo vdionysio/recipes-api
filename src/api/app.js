@@ -16,7 +16,7 @@ app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
 app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
-  response.send('<h1>teste</h1>');
+  response.sendFile(path.join(__dirname, '../index.html'));
 });
 
 const storage = multer.diskStorage({
